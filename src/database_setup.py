@@ -59,7 +59,7 @@ class DatabaseSetup:
         
         conn.commit()
         conn.close()
-        print("✅ SQL database ready!")
+        print(" SQL database ready!")
     
     def setup_mongodb(self):
         """Initialize MongoDB"""
@@ -94,7 +94,7 @@ class DatabaseSetup:
         db.daily_steps.create_index([("user_id", 1), ("timestamp", -1)])
         
         client.close()
-        print("✅ MongoDB ready!")
+        print(" MongoDB ready!")
     
     def setup_neo4j(self):
         """Initialize Neo4j"""
@@ -121,7 +121,7 @@ class DatabaseSetup:
                 """, user_id=user_id, name=name, age=age, gender=gender)
         
         driver.close()
-        print("✅ Neo4j ready!")
+        print(" Neo4j ready!")
 
 if __name__ == "__main__":
     print(" Starting database setup...\n")
