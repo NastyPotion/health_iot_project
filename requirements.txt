@@ -1,0 +1,24 @@
+ Prerequisites
+Before running this project, ensure you have the following installed:
+Docker Desktop (Required to run Mosquitto, MongoDB, and Neo4j).
+Python 3.10+
+Git (For cloning the repository).
+ Installation & Setup Instructions
+1. Clone the Repository
+    git clone https://github.com/YOUR_USERNAME/health_iot_project.git
+    cd health_iot_project
+2. Start the Infrastructure (Docker)
+Ensure Docker Desktop is running, then start the containers:
+    docker compose up -d
+This will start Eclipse Mosquitto (port 1883), MongoDB (port 27017), and Neo4j (port 7474/7687).
+3. Setup Python Environment
+Create and activate a virtual environment, then install dependencies:
+    # Windows PowerShell
+    python -m venv venv
+    .\venv\Scripts\Activate.ps1
+
+# Install libraries
+    pip install paho-mqtt pymongo neo4j
+4. Initialize Databases
+    Run the setup script to create tables, collections, and sample users:
+    python src/database_setup.py
