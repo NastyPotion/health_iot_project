@@ -15,7 +15,7 @@ class DatabaseSetup:
     
     def setup_sql(self):
         """Initialize SQL database"""
-        print("🔧 Setting up SQL database...")
+        print(" Setting up SQL database...")
         
         os.makedirs('data', exist_ok=True)
         
