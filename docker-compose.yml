@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto_broker
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:7
+    container_name: mongodb_health
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+    restart: unless-stopped
+
+  neo4j:
+    image: neo4j:5.18
+    container_name: neo4j_health
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4j_data:/data
+    environment:
+      NEO4J_AUTH: neo4j/password123
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
+  neo4j_data:
