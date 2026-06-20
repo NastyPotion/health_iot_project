@@ -1,0 +1,21 @@
+You need to open 3 separate terminals (all with the virtual environment activated).
+Terminal 1: Start the Main MQTT Client
+      python src/mqtt_client.py
+(Wait until you see "Connected to MQTT broker" and "Subscribed to...")
+Terminal 2: Start the Wearable Simulator
+      python src/simulator.py
+(You will see data publishing every 5 seconds. The client in Terminal 1 will start receiving and processing it.)
+ How to Verify Data Storage
+Check MongoDB (Time-Series Data)
+      docker exec -it mongodb_health mongosh -u admin -p password123
+      # Inside shell:
+      use health_timeseries
+      db.heart_rate_readings.find().limit(3)
+      exit
+Check Neo4j (Graph Data)
+Open your browser and go to: http://localhost:7474
+Connect using URL: bolt://localhost:7687, Username: neo4j, Password: password123
+Run query: MATCH (u:User)-[:TRIGGERED_ALERT]->(a:Alert) RETURN u, a
+Check SQL (Alerts & Users)
+Run the provided verification script:
+      python check_sql.py
